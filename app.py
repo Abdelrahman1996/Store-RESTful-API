@@ -7,7 +7,7 @@ from resources.user import UserRegister
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
-app = Flask(__name__, template_folder='template')
+app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACKS_MODIFICATIONS'] = False
 app.secret_key = 'jose'
