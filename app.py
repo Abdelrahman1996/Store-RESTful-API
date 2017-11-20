@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask_restful import Api, Resource
+from flask_restful import Api
 from flask_jwt import JWT
 
 from security import authenticate, identity
@@ -14,10 +14,6 @@ app.secret_key = 'jose'
 api = Api(app)
 
 jwt = JWT(app, authenticate, identity)
-
-class Web_Page(Resource):
-    def get(self):
-        return render_template('index.html')
 
 @app.before_first_request
 def create_tables():
