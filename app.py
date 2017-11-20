@@ -19,7 +19,6 @@ jwt = JWT(app, authenticate, identity)
 def create_tables():
    db.create_all()
          
-api.add_resource(Web_Page, '/')
 api.add_resource(UserRegister, '/register')
 api.add_resource(Item, '/item/<string:name>')
 api.add_resource(ItemList, '/items')
