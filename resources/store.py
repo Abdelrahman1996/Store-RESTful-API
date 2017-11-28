@@ -1,4 +1,4 @@
-import sqlite3
+rimport sqlite3
 from flask import jsonify 
 from flask_restful import Resource
 from flask_jwt import jwt_required
@@ -14,9 +14,7 @@ class Store(Resource):
     
     def post(self, name):
         if StoreModel.find_by_name(name):
-           response = flask.jsonify({"message": "Store with name {} already exists.".format(name)})
-           response.headers.add('Access-Control-Allow-Origin', '*')
-           return response
+           return {"message": "Store with name {} already exists.".format(name)}
         store = StoreModel(name)
         try:
           store.save_to_db()
