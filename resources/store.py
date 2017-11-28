@@ -14,14 +14,17 @@ class Store(Resource):
     
     def post(self, name):
         if StoreModel.find_by_name(name):
-           return {"message": "Store with name {} already exists.".format(name)}
+           response = flask.jsonify({"message": "Store with name {} already exists.".format(name)})
+           response.headers.add('Access-Control-Allow-Origin', '*')
+           return response
         store = StoreModel(name)
         try:
           store.save_to_db()
         except:
            return {"message":"an error occurred when inserting the store."}, 500
-        
-        return store.json(), 201
+        response = flask.jsonify({"store_data":store.json()})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
  
     @jwt_required()
     def delete(self, name):
