@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse
 from models.user import UserModel
 from passlib.apps import custom_app_context as pwd_context
-from Security import hash_password
+from security import hash_password
 
 class UserRegister(Resource):
     parser = reqparse.RequestParser()
