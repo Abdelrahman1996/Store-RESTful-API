@@ -3,7 +3,7 @@ from models.user import UserModel
 from passlib.apps import custom_app_context as pwd_context
 
 def hash_password(password):
-    self.password_hash = pwd_context.encrypt(password)
+    return pwd_context.encrypt(password)
 
 def authenticate(username, password):
     user = UserModel.find_by_username(username)
