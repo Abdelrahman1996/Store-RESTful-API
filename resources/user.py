@@ -1,5 +1,7 @@
 from flask_restful import Resource, reqparse
 from models.user import UserModel
+from passlib.apps import custom_app_context as pwd_context
+from Security import hash_password
 
 class UserRegister(Resource):
     parser = reqparse.RequestParser()
@@ -16,11 +18,10 @@ class UserRegister(Resource):
 
     def post(self):
         data = UserRegister.parser.parse_args()
-
         if UserModel.find_by_username(data['username']):
             return {"message": "A user with that username already exists"}, 400
 
-        user = UserModel(**data)
+        user = UserModel(data['username'], hash_password(data['password']))
         user.save_to_db()
 
         return {"message": "User created successfully."}, 201
