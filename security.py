@@ -7,7 +7,7 @@ def hash_password(password):
 
 def authenticate(username, password):
     user = UserModel.find_by_username(username)
-    if user and pwd_context.verify(hash_password(password),user.password):
+    if user and safe_str_cmp(user.password, hash_password(password)):
         return user
 
 def identity(payload):
